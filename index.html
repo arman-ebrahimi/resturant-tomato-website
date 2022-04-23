@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resturant By Grid & Float</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		*{
+			box-sizing: border-box;
+		}
+		body{
+			background-image: linear-gradient(to right,crimson,darkcyan);
+			text-transform: capitalize;
+			padding: 30px
+		}
+		.menubar{
+			text-align: center;
+			margin-top: 25px;
+		}
+		.menubar a{
+			display: inline-block;
+			width: 18%;
+			background-color: rgba(255,99,71,0.8);
+			padding: 15px 20px;
+			color: rgba(255,255,255,0.9);
+			text-decoration: none;
+			font-size: 1.6em;
+			margin:5px;
+			border-radius: 2px;
+			outline: none;
+		}
+		.link-hidden{
+			display: none;
+			text-decoration: none;
+			color: rgba(255,255,255,0.8);
+			background-color: rgba(255,99,71,0.8);
+			padding: 10px 18px;
+			border-radius: 2px;
+			outline: none;
+			clear: both;
+		}
+		.menubar a:hover, .link-hidden:hover{
+			background-color: tomato;
+			color: white;
+		}
+		.img{
+			grid-area: img;
+		}
+		.price1{
+			grid-area: price1;
+			background: url('pasta.jpg') center center/cover no-repeat;
+		}
+		.price2{
+			grid-area: price2;
+			background: url('sandwich.jpg') center center/cover no-repeat;
+		}
+		.grid{
+			display: grid;
+			grid-gap: 20px;
+			grid-template-areas: 'img img price1'
+			                     'img img price2';
+			grid-template-rows: 200px 200px;
+			margin-top: 30px;
+		}
+		.img{
+			background: url('fish.jpg') center center/cover no-repeat;
+		}
+		.price1,.price2{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			color: rgba(255,255,255,0.3);
+			transition: 0.4s;
+		}
+		.price1:hover, .price2:hover{
+			color: tomato;
+		}
+		span{
+			font-size: 4em;	
+		}
+		.price1 b,.price2 b{
+			font-size: 1.5em;
+		}
+		.price1 p,.price2 p{
+			cursor: default;
+		}
+		.tow-link{
+			margin-top: 20px;
+			margin-left: 20px;
+		}
+		.tow-link a, .reserve{
+			display: inline-block;
+			text-decoration: none;
+			color: white;
+			background-color: rgba(255,99,71,0.8);
+			padding: 10px 20px;
+			outline: none;
+			border-radius: 2px;
+		}
+		.tow-link a:hover, .reserve:hover{
+			background-color: tomato;
+		}
+		.tow-link a:hover{
+			transform: scale(1.03);
+		}
+		.tow-link a:first-child{
+			width: 150px;
+			text-align: center;
+			font-size: 1.3em;
+		}
+		.container1:after{ /* for that ".container1" not float on the ".container2" */
+			content: "";
+			clear: both;
+			display: table;
+		}
+		.gallery{
+			float: left;
+			width: 25%;
+			height: 230px;
+			background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.6) );
+			background-clip: content-box;
+			padding: 10px;
+			text-align: center;
+		}
+		.icon{
+			margin-top: 10px;
+		}
+		.text-food{
+			margin: 25px 10px 10px;
+			color: #222;
+		}
+		.container2{
+			background-color: white;
+			padding: 20px;
+			overflow: auto;
+		}
+		.container2 img{
+			float: left;
+		}
+		.three-text{
+			margin-left: 570px;
+			margin-top: 200px;
+		}
+		.reserve{
+			font-size: 1.3em;
+		}
+		.reserve:after{
+			content: "\2192";
+		}
+		.box-footer{
+			text-align: center;
+		}
+		.footer{
+			display: inline-block;
+		}
+		.gra1{
+			width: 43%;
+			height: 15px;
+			background-image: linear-gradient(to right, rgba(255,99,71,0), rgba(255,99,71,1) );
+		}
+		.gra2{
+			width: 43%;
+			height: 15px;
+			background-image: linear-gradient(to right, rgba(255,99,71,1), rgba(255,99,71,0) );
+		}
+		.text{
+			font-size: 1.5em;
+			color: #222;
+			margin: 0 10px;
+		}
+
+		@media screen and (max-width: 992px){
+			.container2 img{
+				float: none;
+			}
+			.three-text{
+				margin-left: 50px;
+				margin-top: -80px;
+			}
+			.gra1,.gra2{
+				width: 100%;
+			}
+			.menubar{
+				display: none;
+			}
+			.link-hidden{
+				display: inline-block;
+			}
+		}
+
+		@media screen and (max-width: 768px){
+			.gallery{
+				width: 50%;
+			}
+			.menubar a{
+				width: 45%;
+			}
+		}
+		@media screen and (max-width: 600px){
+			.grid{
+				grid-template-areas: 'img img'
+				                     'price1 price2';
+				grid-template-rows: 300px 150px;
+			}
+			.gallery{
+				width: 100%;
+			}
+			.menubar a{
+				width: 100%
+			}
+		}
+	</style>
+</head>
+<body>
+<a class="link-hidden fa fa-bars" id="link-hidden" href="#" onclick="show()"> menu</a><!--"fa & fa-bars" for insert icon menu(f-awsome)-->
+<div class="menubar" id="menubar">
+	<a href="#">home</a>
+	<a href="#">foods</a>
+	<a href="#">drinks</a>
+	<a href="#">desserts</a>
+	<a href="#">reservation</a>
+</div>
+<br>
+<div class="grid">
+	<div class="img">
+		<div class="tow-link">
+			<a href="http://uupload.ir/files/tsit_1-6-5.jpg" target="_blank">see full</a><br><br>
+			<a href="https://en.wikipedia.org/wiki/Fish_as_food" target="_blank">feature</a>
+		</div>
+	</div>
+	<div class="price1">
+		   <p><span>$1.28</span><br>
+		   <b>pasta</b></p>
+	</div>
+	<div class="price2">
+		   <p><span>$5.18</span><br>
+		   <b>fast food</b></p>
+	</div>
+</div>
+<br><br>
+<div class="container1">
+	<div class="gallery">
+		<img class="icon" src="sand.png" alt="sandwich" width="50px">
+		<br><b>sandwich</b>
+		<p class="text-food"><b>Chicken sandwich with lettuce, pickles with the freshest food for you.</p></b>
+	</div>
+	<div class="gallery">
+		<img class="icon" src="french-fries.png" alt="chip" width="50px">
+		<br><b>chip</b>
+		<p class="text-food"><b>Crispy and delicious french fries. Fried with fresh and unburned oil.</p></b>
+	</div>
+	<div class="gallery">
+		<img class="icon" src="meat.png" alt="steak" width="50px">
+        <br><b>steak</b>
+        <p class="text-food"><b>Steak made of fresh and delicious meat. Quality and healthy as you want.</p></b>
+	</div>
+	<div class="gallery">
+		<img class="icon" src="seafood.png" alt="seafood" width="50px">
+        <br><b>seafood</b>
+        <p class="text-food"><b>Fish, shrimp, crabs! Ask us for the most delicious seafood with the best taste.</p></b>
+	</div>
+</div>
+<br>
+<div class="container2">
+	<img src="steak.png" width="550px" height="450px">
+	<div class="three-text">
+		<h2>feature steak</h2>
+		<h4>Fresh meat, Fully cooked, Excellent taste .</h4>
+		<h4>Click to order :</h4>
+		<a class="reserve" href="#">reservation </a>
+	</div>
+</div>
+<br>
+<div class="box-footer">
+    <div class="footer gra1"></div>
+    <div class="footer text"><b><i>foods</i></b></div>
+    <div class="footer gra2"></div>
+</div>
+<script type="text/javascript">
+	function show(){
+		var x=document.getElementById("menubar").style;
+		if(x.display=="none" || x.display==""){
+			x.display="block";
+			x.transform="rotatex(360deg)";
+			document.getElementById("link-hidden").style.transform="scale(0.9)";
+		}else{
+			x.display="none";
+			document.getElementById("link-hidden").style.transform="scale(1.1)";
+		}
+	}
+</script>
+</body>
+</html>
